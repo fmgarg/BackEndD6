@@ -26,17 +26,26 @@ const messages = [
   { author: 'fmgarg@gmail.com', text: '¡Genial!' },
 ]
 
+let eventos = [{"title":"tijera","price":"100","src":"https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg","id":1},{"title":"cartuchera","price":"200","src":"https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg","id":2},{"title":"mochila","price":"10000","src":"https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg","id":3}]
+
+
 io.on('connection', (socket) => {
   console.log('se conecto un usuario')
   socket.emit('messages', messages)
+  socket.emit('socketEventos', eventos)
   socket.on('notificacion', (data) => {
     console.log(data)
   })
 
-  socket.on('new-message', (data) => {
+  socket.on('new-message', (data) => { 
     messages.push(data)
     io.sockets.emit('messages', messages)
   })
+  socket.on('nuevo-evento', (data) => {
+    eventos.push(data)
+    io.sockets.emit('socketEventos', eventos)
+  })
+
 })
 
 /*const server = app.listen(PORT, () => {

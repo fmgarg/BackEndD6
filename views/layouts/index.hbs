@@ -22,23 +22,8 @@
     <script src="js/main.js"></script>
 </head>
 <body class="merchandiseBody">
-  <header>
-
-        <nav class="navbar navbar-expand-lg navbar-light"> <!--nav bar de bootstrap con menú hamburguesa en responsive-->
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarScroll">
-                  <ul class="navbar-nav navbar-nav-scroll">
-                      <li class="nav-item">
-                          <a class="nav-link" href="/">Inicio<span class="sr-only">(current)</span></a>
-                      </li>
-                      <li class="nav-item">
-                          <a class="nav-link" href="/productos">Productos<span class="sr-only">(current)</span></a>
-                      </li>
-                  </ul>
-          </div>
-    </nav> 
+    <header>
+ 
     </header>
     <!--shopping cart-->
    <section class="py-5">
@@ -47,18 +32,36 @@
                     
                 </div>
         </div>
-    <!--Formulario de ingreso de productos-->
+    <!--Formulario de ingreso de productos con WEBSOCKETS-->
+    </section>
+     <section class="h-100" style="background-color: #eee;">
+            <div class="container h-100 py-5">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="col-10">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h3 class="fw-normal mb-0 text-black">Vista de productos</h3>
+                        </div>
+                        
+                        <div id="tabla-eventos"></div>
+                                    
+                    </div>
+                </div>
+            </div>
+
+
     </section>
     <section>
-        <form class="formContact" action="/productos/" method="POST">
+        
+        <div id="tabla-eventos"></div>
+        <form class="formContact" onsubmit="return enviarActualizacion(this)"  method="POST">
             <fieldset class="formulario">
                 <legend class="formTit">Formulario de ingreso de productos</legend>
                 <label class="FormItem" for="name">Title</label>
-                <input class="FormItem" type="text" name="title">
+                <input class="FormItem" type="text" name="title" id="title">
                 <label class="FormItem" for="phone">Price</label>
-                <input class="FormItem" type="number" name="price"> 
+                <input class="FormItem" type="number" name="price" id="price"> 
                 <label class="FormItem" for="email">SRC</label>
-                <input class="FormItem" type="url" name="src">
+                <input class="FormItem" type="url" name="src" id="src">
                 <input class="btn btn-primary" type="submit" value="Enviar"/>            
             </fieldset>
         </form>
@@ -68,18 +71,17 @@
             <div class="container h-100 py-5">
                 <div class="row d-flex justify-content-center align-items-center h-100">
                     <div class="col-10">
-
                         <div class="d-flex justify-content-between align-items-center mb-4">
                         <h3 class="fw-normal mb-0 text-black">Vista de productos</h3>
                         </div>
                                     {{{body}}}
-                                    
-
                     </div>
                 </div>
             </div>
+
+
     </section>
-    <!--Cliente de WEBSOCKETS-->
+    <!--Cliente de CHAT WEBSOCKETS-->
     <section>
             <h1>Cliente CHAT de Websockets</h1>
             <div id="mensajes"></div>
