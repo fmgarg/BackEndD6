@@ -4,7 +4,6 @@ const req = require('express/lib/request')
 
 const productosRouter = express.Router ()
 
-
 //let Contenedor = require('../components/contenedor')
 
 let productos = [{"title":"tijera","price":"100","src":"https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg","id":1},{"title":"cartuchera","price":"200","src":"https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg","id":2},{"title":"mochila","price":"10000","src":"https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg","id":3}]
@@ -148,6 +147,8 @@ const items = new Contenedor ('productos.json');
 //module.exports = new Contenedor;
 
 
+
+
 //---------------------------------------------------------creacion de las rutas--------------------------------------------------------------------------
 
 productosRouter.get ('/', async (req, res)=>{
@@ -160,12 +161,12 @@ productosRouter.get ('/', async (req, res)=>{
     //console.log(fakeApi())
 })
 
-productosRouter.get ('/:ID', async (req, res)=>{
+/*productosRouter.get ('/:ID', async (req, res)=>{
     number = JSON.parse(req.params.ID)
     //console.log(number)
     let product = await items.getByID(number)
     res.json(product)
-})
+})*/
 
 productosRouter.post('/', async (req, res)=>{
   console.log(req.body)

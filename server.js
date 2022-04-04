@@ -17,7 +17,7 @@ app.use(express.static('./public'))
   //res.sendFile('index')
 })*/
 
-httpServer.listen(8080, () => console.log('servidor Levantado'))
+httpServer.listen(8080, () => console.log('servidor levantado puerto: 8080'))
 
 //metodo para enviar y recibir peticiones json
 const router = express.Router()
@@ -26,14 +26,14 @@ const router = express.Router()
 app.use(express.urlencoded({ extended: true}))
 app.use(express.json())
 
-//-------importando el modulo---------------
+//-------importando el modulo Router---------------
 const productosRouter = require ('./routes/productosRouter')
 
-//----------importacion productos-------------
+//----------importacion del arreglo de productos-------------
 
 const eventos = require ('./routes/productosRouter') ['productos']
 
-console.log(eventos)
+//console.log(eventos)
 
 //exponer las rutas a una app. router con la peticion**
 app.use('/', productosRouter)

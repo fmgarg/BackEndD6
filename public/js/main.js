@@ -1,3 +1,4 @@
+
 const socket = io.connect()
 
 socket.on('mi mensaje', (data) => {
@@ -26,10 +27,7 @@ function render(data) {
 function renderEventos(data) {
   const html = data
     .map((elem, index) => {
-      return `
-      {{#if listExists}}
-              {{#each suggestedChamps}}
-                    
+      return `                    
                     <div class="card rounded-3 mb-4">
                               <div class="card-body p-4">
                                   <div class="row d-flex justify-content-between align-items-center">
@@ -38,7 +36,7 @@ function renderEventos(data) {
                                       class="img-fluid rounded-3">
                                   </div>
                                   <div class="col-md-3 col-lg-3 col-xl-3">
-                                      <p class="lead fw-normal mb-2">${elem.title} (ID:${elem.id})</p>
+                                      <p class="lead fw-normal mb-2">${elem.title}</p>
                                   </div>
           
                                   <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
@@ -50,9 +48,6 @@ function renderEventos(data) {
                                   </div>
                               </div>
                     </div>
-                    
-              {{/each}}
-      {{/if}}
             `
     })
     .join(' ')
@@ -80,7 +75,7 @@ function enviarActualizacion(e) {
   const mensaje = {
     title: document.getElementById('title').value,
     price: document.getElementById('price').value,
-    text: document.getElementById('src').value,
+    src: document.getElementById('src').value,
   }
   socket.emit('nuevo-evento', mensaje)
   return false
