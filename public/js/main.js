@@ -80,7 +80,7 @@ function enviarActualizacion(e) {
   const mensaje = {
     title: document.getElementById('title').value,
     price: document.getElementById('price').value,
-    //text: document.getElementById('src').value,
+    text: document.getElementById('src').value,
   }
   socket.emit('nuevo-evento', mensaje)
   return false

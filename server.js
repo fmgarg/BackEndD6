@@ -29,7 +29,7 @@ app.use(express.json())
 //-------importando el modulo---------------
 const productosRouter = require ('./routes/productosRouter')
 
-//----------importacion db-------------
+//----------importacion productos-------------
 
 const eventos = require ('./routes/productosRouter') ['productos']
 

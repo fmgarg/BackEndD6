@@ -8,7 +8,7 @@ const productosRouter = express.Router ()
 //let Contenedor = require('../components/contenedor')
 
 let productos = [{"title":"tijera","price":"100","src":"https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg","id":1},{"title":"cartuchera","price":"200","src":"https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg","id":2},{"title":"mochila","price":"10000","src":"https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg","id":3}]
-exports.productos = productos
+
 
 const newObjeto = {
     "title":"Pez Globo",                                                                                                                          
@@ -43,7 +43,7 @@ class Contenedor {
             producto ["id"] = productos.length + 1
             //console.log(producto)
             productos.push(producto)
-            console.log(`el nuevo objeto fue guardado con el id ${producto.id}`)
+            //console.log(`el nuevo objeto fue guardado con el id ${producto.id}`)
         }
         catch (err) {
             console.log('no se pudo agregar');
