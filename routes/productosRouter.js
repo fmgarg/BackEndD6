@@ -8,6 +8,7 @@ const productosRouter = express.Router ()
 //let Contenedor = require('../components/contenedor')
 
 let productos = [{"title":"tijera","price":"100","src":"https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg","id":1},{"title":"cartuchera","price":"200","src":"https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg","id":2},{"title":"mochila","price":"10000","src":"https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg","id":3}]
+exports.productos = productos
 
 const newObjeto = {
     "title":"Pez Globo",                                                                                                                          
@@ -144,6 +145,8 @@ class Contenedor {
 
 const items = new Contenedor ('productos.json');
 
+//module.exports = new Contenedor;
+
 
 //---------------------------------------------------------creacion de las rutas--------------------------------------------------------------------------
 
@@ -153,6 +156,8 @@ productosRouter.get ('/', async (req, res)=>{
     fakeApi = ()=> products
 
     res.render('datos', {suggestedChamps: fakeApi(), listExists: true})
+    //return fakeApi()
+    //console.log(fakeApi())
 })
 
 productosRouter.get ('/:ID', async (req, res)=>{
@@ -188,4 +193,5 @@ productosRouter.delete ("/:ID", async (req, res)=>{
 })
 
 //exportando el modulo
-module.exports = productosRouter
+module.exports = productosRouter;
+module.exports ['productos'] = productos

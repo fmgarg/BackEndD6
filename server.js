@@ -19,42 +19,6 @@ app.use(express.static('./public'))
 
 httpServer.listen(8080, () => console.log('servidor Levantado'))
 
-//--------sockets-------
-const messages = [
-  { author: 'fmgarg@gmail.com', text: '¡Hola! ¿Que tal?' },
-  { author: 'fmgarg@gmail.com', text: '¡Muy bien! ¿Y vos?' },
-  { author: 'fmgarg@gmail.com', text: '¡Genial!' },
-]
-
-let eventos = [{"title":"tijera","price":"100","src":"https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg","id":1},{"title":"cartuchera","price":"200","src":"https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg","id":2},{"title":"mochila","price":"10000","src":"https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg","id":3}]
-
-
-io.on('connection', (socket) => {
-  console.log('se conecto un usuario')
-  socket.emit('messages', messages)
-  socket.emit('socketEventos', eventos)
-  socket.on('notificacion', (data) => {
-    console.log(data)
-  })
-
-  socket.on('new-message', (data) => { 
-    messages.push(data)
-    io.sockets.emit('messages', messages)
-  })
-  socket.on('nuevo-evento', (data) => {
-    eventos.push(data)
-    io.sockets.emit('socketEventos', eventos)
-  })
-
-})
-
-/*const server = app.listen(PORT, () => {
-  console.log('servidor levantado en el puerto: ' + server.address().port)
-})*/
-
-//iniciar el servidor con menejo de errores
-//server.on('error', (error) => console.log(`hubo un error ${error}`))
-
 //metodo para enviar y recibir peticiones json
 const router = express.Router()
 
@@ -62,13 +26,22 @@ const router = express.Router()
 app.use(express.urlencoded({ extended: true}))
 app.use(express.json())
 
+//-------importando el modulo---------------
 const productosRouter = require ('./routes/productosRouter')
+
+//----------importacion db-------------
+
+const eventos = require ('./routes/productosRouter') ['productos']
+
+console.log(eventos)
 
 //exponer las rutas a una app. router con la peticion**
 app.use('/', productosRouter)
 
-//handlebars
+//---------handlebars---------------
 const handlebars = require('express-handlebars')
+const { INSPECT_MAX_BYTES } = require('buffer')
+const { timeStamp } = require('console')
 
 app.engine(
     'hbs',
@@ -81,6 +54,33 @@ app.engine(
 app.set('view engine', 'hbs')
 app.set('views', './views')
 
+//--------------sockets-------------
+const messages = [
+  { author: 'fmgarg@gmail.com', text: '¡Hola! ¿Que tal?' },
+  { author: 'fmgarg@gmail.com', text: '¡Muy bien! ¿Y vos?' },
+  { author: 'fmgarg@gmail.com', text: '¡Genial!' },
+]
 
+io.on('connection', (socket) => {
+                                console.log('se conecto un usuario')
+                                socket.emit('messages', messages)
+                                socket.emit('socketEventos', eventos)
+                                socket.on('notificacion', (data) => {
+                                                    console.log(data)
+                                                    }
+                                )
 
+                                socket.on('new-message', (data) => { 
+                                                              messages.push(data)
+                                                              io.sockets.emit('messages', messages)
+                                                              }
+                                )
 
+                                socket.on('nuevo-evento', (data) => {
+                                                              eventos.push(data)
+                                                              io.sockets.emit('socketEventos', eventos)
+                                                              }
+                                )
+
+                                }
+)
