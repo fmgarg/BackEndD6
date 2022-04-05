@@ -1,0 +1,18 @@
+[
+    {
+        "author": "fmgarg@gmail.com",
+        "text": "¡Hola! ¿Que tal?"
+    },
+    {
+        "author": "fmgarg@gmail.com",
+        "text": "¡Muy bien! ¿Y vos?"
+    },
+    {
+        "author": "fmgarg@gmail.com",
+        "text": "¡Genial!"
+    },
+    {
+        "author": "pedro@gmail.com",
+        "text": "jajaja"
+    }
+]

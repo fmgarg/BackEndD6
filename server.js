@@ -55,11 +55,19 @@ app.set('view engine', 'hbs')
 app.set('views', './views')
 
 //--------------sockets-------------
-const messages = [
+const fs = require('fs');
+
+const nombreArchivo = 'messages.txt'
+
+let messagesNotParse = fs.readFileSync('./messages.txt', 'utf-8')
+let messages = JSON.parse(messagesNotParse)
+ console.log (messages)
+
+/*const messages = [
   { author: 'fmgarg@gmail.com', text: '¡Hola! ¿Que tal?' },
   { author: 'fmgarg@gmail.com', text: '¡Muy bien! ¿Y vos?' },
   { author: 'fmgarg@gmail.com', text: '¡Genial!' },
-]
+]*/
 
 io.on('connection', (socket) => {
                                 console.log('se conecto un usuario')
@@ -73,6 +81,13 @@ io.on('connection', (socket) => {
                                 socket.on('new-message', (data) => { 
                                                               messages.push(data)
                                                               io.sockets.emit('messages', messages)
+                                                              console.log (messages)
+                                                              fs.writeFile('./messages.txt', JSON.stringify(messages, null, 4), error =>{
+                                                                if(error){
+                                                                } else {
+                                                                console.log("se guardo un nuevo mensaje.")
+                                                                }
+                                                            });
                                                               }
                                 )
 
